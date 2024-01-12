@@ -1,25 +1,17 @@
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 
 const CartCard = () => {
   return (
-    <div className="absolute inset-x-2 right-auto top-20 z-10 h-44 w-[95%]">
-      <Card className="pb-20">
-        <CardHeader className="gap-y-5">
-          <CardTitle>Cart</CardTitle>
-          <Separator />
-          <CardDescription className="text-center">
-            Your cart is empty
-          </CardDescription>
-        </CardHeader>
-      </Card>
+    <div className="bt-20 absolute inset-x-2 right-auto top-20 z-10 w-[95%] pb-20">
+      <div className="h-[30%]  space-y-5 rounded-xl bg-white px-5 py-7">
+        <h2 className="text-lg font-bold text-very_dark_blue">Cart</h2>
+        <Separator />
+        <div className="flex h-[25vh] items-center justify-center text-center">
+          <p className="font-bold text-dark_grayish_blue">
+            Your cart is empty.
+          </p>
+        </div>
+      </div>
     </div>
   );
 };

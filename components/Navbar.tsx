@@ -15,7 +15,7 @@ const Navbar = () => {
   const [isCardClickled, setIsCardClickled] = useState(false);
   return (
     <Container>
-      <nav className="my-4 flex items-center  justify-between px-4 lg:my-10">
+      <nav className="my-4 flex items-center justify-between px-4 lg:my-10">
         <div className="flex items-center justify-center gap-x-3">
           <MobileMenu />
           <Image src="/logo.svg" height={20} width={138} alt="w" />
@@ -35,7 +35,7 @@ const Navbar = () => {
           <Profile />
         </div>
       </nav>
-      <div>{isCardClickled && <CartCard />}</div>
+      {isCardClickled && <CartCard />}
     </Container>
   );
 };

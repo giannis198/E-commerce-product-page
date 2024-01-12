@@ -1,4 +1,3 @@
-import { StaticImageData } from "next/image";
 import Carouzel from "./Carouzel";
 import Info from "./Info";
 import { Product } from "@/types";
@@ -14,7 +13,6 @@ const Product = ({ data }: ProductProps) => {
     title,
     description,
     company,
-    price,
     discount,
     prevPrice,
     images,
@@ -23,9 +21,10 @@ const Product = ({ data }: ProductProps) => {
   const finalPrice = calculateDiscountedPrice(prevPrice, discount, 2);
 
   return (
-    <div>
+    <>
       <Carouzel data={images} />
       <Info
+      id={id}
         companyName={company}
         title={title}
         description={description}
@@ -33,7 +32,7 @@ const Product = ({ data }: ProductProps) => {
         discount={discount}
         prevPrice={prevPrice}
       />
-    </div>
+    </>
   );
 };
 

@@ -1,10 +1,11 @@
 import Image from "next/image";
+import iconCart from "../public/icon-cart.svg";
 
 const Cart = () => {
   return (
-    <div>
-      <Image alt="shopping cart" src="/icon-cart.svg" width={22} height={20} />
-    </div>
+    <>
+      <Image alt="shopping cart" src={iconCart} />
+    </>
   );
 };
 
