@@ -8,5 +8,8 @@ export interface Product {
   price: number;
   discount: number;
   prevPrice: number;
-  images: string[] | StaticImageData[];
+  images: {
+    highResImg: string[] | StaticImageData[];
+    thumbnails: string[] | StaticImageData[];
+  };
 }

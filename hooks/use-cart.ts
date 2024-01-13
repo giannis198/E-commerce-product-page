@@ -14,8 +14,6 @@ export const useCart = create(
     (set, get) => ({
       items: [],
       additem: (data: Product) => {
-        const currentItems = get().items;
-
         set({ items: [...get().items, data] });
       },
       removeItem: (id: string) => {

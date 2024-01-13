@@ -11,26 +11,22 @@ import NavLinks from "./Navlinks";
 
 const MobileMenu = () => {
   return (
-    <div className="">
+    <>
       <Sheet>
         <SheetTrigger asChild>
-          <div className="cursor-pointer lg:hidden">
-            <Image
-              className="h-auto w-auto"
-              src="/icon-menu.svg"
-              height={15}
-              width={16}
-              alt="hamburger menu"
-            />
-          </div>
+          <Image
+            className="h-auto w-auto cursor-pointer lg:hidden"
+            src="/icon-menu.svg"
+            height={15}
+            width={16}
+            alt="hamburger menu"
+          />
         </SheetTrigger>
         <SheetContent side="left">
-          <div>
-            <NavLinks />
-          </div>
+          <NavLinks />
         </SheetContent>
       </Sheet>
-    </div>
+    </>
   );
 };
 

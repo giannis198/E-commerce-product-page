@@ -8,30 +8,17 @@ interface ProductProps {
 }
 
 const Product = ({ data }: ProductProps) => {
-  const {
-    id,
-    title,
-    description,
-    company,
-    discount,
-    prevPrice,
-    images,
-  } = data;
+  const { images } = data;
 
-  const finalPrice = calculateDiscountedPrice(prevPrice, discount, 2);
+  const finalPrice = calculateDiscountedPrice(data.prevPrice, data.discount, 2);
+
+  const dataWithDiscount = { ...data, price: finalPrice };
+
 
   return (
     <>
-      <Carouzel data={images} />
-      <Info
-      id={id}
-        companyName={company}
-        title={title}
-        description={description}
-        price={finalPrice}
-        discount={discount}
-        prevPrice={prevPrice}
-      />
+      <Carouzel data={images.highResImg} />
+      <Info data={dataWithDiscount} />
     </>
   );
 };

@@ -20,7 +20,7 @@ const Carouzel = ({ data }: CarouzelProps) => {
         {data.map((url, index) => (
           <CarouselItem
             key={index}
-            className=" flex items-center justify-center"
+            className="flex items-center justify-center"
           >
             {url ? (
               <AspectRatio ratio={11 / 9}>

@@ -10,6 +10,8 @@ import Container from "./Container";
 import { Button } from "./ui/button";
 import { useState } from "react";
 import CartCard from "./CartCard";
+import { Suspense } from "react";
+import { Skeleton } from "./ui/skeleton";
 
 const Navbar = () => {
   const [isCardClickled, setIsCardClickled] = useState(false);
@@ -27,10 +29,13 @@ const Navbar = () => {
 
         <div className="flex items-center justify-center gap-x-5">
           <Button
-            variant="link"
+            variant="default"
+            className="rounded-full bg-white hover:bg-slate-100"
             onClick={() => setIsCardClickled(!isCardClickled)}
           >
-            <Cart />
+            <Suspense fallback={<Skeleton className="h-5 w-5 rounded-full" />}>
+              <Cart />
+            </Suspense>
           </Button>
           <Profile />
         </div>

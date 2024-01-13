@@ -12,6 +12,9 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 
+import iconPlus from "../public/icon-plus.svg";
+import iconMinus from "../public/icon-minus.svg";
+
 const formSchema = z.object({
   quantity: z.coerce.number().min(1),
 });
@@ -19,9 +22,16 @@ const formSchema = z.object({
 import { Button } from "./ui/button";
 import Image from "next/image";
 import { useCart } from "@/hooks/use-cart";
+import { Product } from "@/types";
+import toast from "react-hot-toast";
 
-const AddToCartForm = ({ price }: { price: number }) => {
+interface Props {
+  data: Product;
+}
+
+const AddToCartForm = ({ data }: Props) => {
   const cart = useCart();
+
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -30,9 +40,12 @@ const AddToCartForm = ({ price }: { price: number }) => {
   });
 
   function onSubmit(values: z.infer<typeof formSchema>) {
-    // Do something with the form values.
-    // ✅ This will be type-safe and validated.
-    console.log(values.quantity);
+    const dataWithFinalPrice = { ...data, price: values.quantity * data.price };
+    const itemOne = cart.items.filter((item) => item.id === data.id);
+    console.log(itemOne);
+
+    cart.additem(dataWithFinalPrice);
+    toast.success("Item added to cart!");
   }
 
   const { isSubmitting, isValid } = form.formState;
@@ -59,33 +72,24 @@ const AddToCartForm = ({ price }: { price: number }) => {
                     />
                     <Button
                       type="button"
-                      variant="link"
-                      className="absolute right-3 top-3 rounded-full "
+                      variant="ghost"
+                      className="absolute right-3 top-3"
                       onClick={() => field.onChange(field.value + 1)}
                     >
-                      <Image
-                        src="/icon-plus.svg"
-                        width={12}
-                        height={12}
-                        alt="plus"
-                      />
+                      <Image src={iconPlus} alt="plus" />
                     </Button>
                     <Button
+                      disabled={field.value < 1}
                       type="button"
-                      variant="link"
-                      className="absolute left-3 top-3 rounded-full"
+                      variant="ghost"
+                      className=" absolute left-3 top-3"
                       onClick={() => {
                         if (field.value > 0) {
                           field.onChange(field.value - 1);
                         }
                       }}
                     >
-                      <Image
-                        src="/icon-minus.svg"
-                        width={12}
-                        height={4}
-                        alt="plus"
-                      />
+                      <Image src={iconMinus} alt="plus" />
                     </Button>
                   </div>
                 </FormControl>

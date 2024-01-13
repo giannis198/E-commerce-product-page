@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
 import { Kumbh_Sans } from "next/font/google";
 import "./globals.css";
-import Link from "next/link";
 import Navbar from "@/components/Navbar";
+import { ToastProvider } from "@/providers/toast-provider";
+import Footer from "@/components/Footer";
 
 const kumbh = Kumbh_Sans({ subsets: ["latin"] });
 
@@ -20,25 +21,12 @@ export default function RootLayout({
     <html lang="en">
       <body className={kumbh.className}>
         <header>
+          <ToastProvider />
           <Navbar />
         </header>
         <main>{children}</main>
         <footer>
-          {" "}
-          <div className="attribution">
-            Challenge by{" "}
-            <Link
-              href="https://www.frontendmentor.io?ref=challenge"
-              target="_blank"
-            >
-              Frontend Mentor
-            </Link>
-            . Coded by{" "}
-            <Link href="https://www.linkedin.com/in/ioannis-nikitopoulos-547a99122/">
-              Ioannis Nikitopoulos
-            </Link>
-            .
-          </div>
+          <Footer />{" "}
         </footer>
       </body>
     </html>
