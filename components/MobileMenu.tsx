@@ -1,12 +1,10 @@
+
+import Image from "next/image";
 import {
   Sheet,
   SheetContent,
-  SheetDescription,
-  SheetHeader,
-  SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
-import Image from "next/image";
 import NavLinks from "./Navlinks";
 
 const MobileMenu = () => {

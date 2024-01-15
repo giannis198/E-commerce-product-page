@@ -3,13 +3,15 @@ import Link from "next/link";
 const NavLinks = () => {
   const navLinks = ["Collections", "Men", "Women", "About", "Contact"];
   return (
-    <div className="grid gap-5 pt-20 text-xl font-bold text-black lg:grid-flow-col lg:gap-x-16 lg:pt-0">
-      {navLinks.map((link) => (
-        <Link className="hover:text-soft_red" key={link} href="#">
-          {link}
-        </Link>
+    <ul className="grid gap-5 pt-20 text-xl font-bold text-dark_grayish_blue md:grid-flow-col md:gap-x-16 md:pt-0">
+      {navLinks.map((link, index) => (
+        <li key={index}>
+          <Link key={link} className="hover:text-Orange" href="#">
+            {link}
+          </Link>
+        </li>
       ))}
-    </div>
+    </ul>
   );
 };
 

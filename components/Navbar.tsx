@@ -1,46 +1,48 @@
 "use client";
 
 import Image from "next/image";
+import { useState } from "react";
+import Cart from "./Cart";
+import sneakersLogo from "../public/logo.svg";
+
 import MobileMenu from "./MobileMenu";
 import NavLinks from "./Navlinks";
-import Cart from "./Cart";
 import Profile from "./Profile";
 import Container from "./Container";
+import CartCard from "./CartCard";
 
 import { Button } from "./ui/button";
-import { useState } from "react";
-import CartCard from "./CartCard";
-import { Suspense } from "react";
-import { Skeleton } from "./ui/skeleton";
+import { Separator } from "./ui/separator";
+import Link from "next/link";
 
 const Navbar = () => {
   const [isCardClickled, setIsCardClickled] = useState(false);
   return (
     <Container>
-      <nav className="my-4 flex items-center justify-between px-4 lg:my-10">
-        <div className="flex items-center justify-center gap-x-3">
+      <nav className="my-4 flex items-center justify-between px-4 md:my-10">
+        <div className="flex items-center justify-center gap-x-3 md:gap-x-16">
           <MobileMenu />
-          <Image src="/logo.svg" height={20} width={138} alt="w" />
+
+          <Link href="/">
+            <Image src={sneakersLogo} alt="sneakers logo" />
+          </Link>
 
           <div className="hidden lg:block">
             <NavLinks />
           </div>
         </div>
-
         <div className="flex items-center justify-center gap-x-5">
           <Button
-            variant="default"
-            className="rounded-full bg-white hover:bg-slate-100"
+            variant="ghost"
             onClick={() => setIsCardClickled(!isCardClickled)}
           >
-            <Suspense fallback={<Skeleton className="h-5 w-5 rounded-full" />}>
-              <Cart />
-            </Suspense>
+            <Cart />
           </Button>
           <Profile />
         </div>
       </nav>
       {isCardClickled && <CartCard />}
+      <Separator />
     </Container>
   );
 };

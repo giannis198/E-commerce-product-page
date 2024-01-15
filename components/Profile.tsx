@@ -2,8 +2,12 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 const Profile = () => {
   return (
-    <Avatar>
-      <AvatarImage src="image-avatar.png" />
+    <Avatar className="ring-Orange hover:ring-2">
+      <AvatarImage
+        className="cursor-pointer "
+        src="/image-avatar.png"
+        alt="avatar"
+      />
       <AvatarFallback>CN</AvatarFallback>
     </Avatar>
   );

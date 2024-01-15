@@ -16,9 +16,9 @@ const page = () => {
     title: "fall limited edition sneakers",
     description:
       "These low-profile sneakers are your perfect casual wear companion.Featuring a durable rubber outer sole, they'll withstand everything the weather can offer.",
-    price: 0,
+    price: "",
     discount: 50,
-    prevPrice: 250,
+    prevPrice: 250.0,
     images: {
       highResImg: [image1, image2, image3, image4],
       thumbnails: [thumb1, thumb2, thumb3, thumb4],

@@ -13,11 +13,11 @@ const Info = ({ data }: InfoProps) => {
       <h2 className="font-bold uppercase leading-loose tracking-widest text-Orange">
         {data.company}
       </h2>
-      <h1 className="text-2xl font-bold capitalize text-very_dark_blue">
+      <h1 className="text-2xl font-extrabold capitalize text-very_dark_blue md:text-4xl">
         {data.title}
       </h1>
-      <p className="text-base text-dark_grayish_blue	">{data.description}</p>
-      <div className="flex justify-between">
+      <p className="text-base text-dark_grayish_blue">{data.description}</p>
+      <div className="flex justify-between md:block">
         <div className="flex gap-x-3">
           <h1 className="text-2xl font-bold text-very_dark_blue">{`$${data.price}`}</h1>
           <Badge

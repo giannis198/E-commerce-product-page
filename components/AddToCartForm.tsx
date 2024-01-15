@@ -10,24 +10,24 @@ import {
   FormItem,
   FormMessage,
 } from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
-
-import iconPlus from "../public/icon-plus.svg";
-import iconMinus from "../public/icon-minus.svg";
-
-const formSchema = z.object({
-  quantity: z.coerce.number().min(1),
-});
-
-import { Button } from "./ui/button";
-import Image from "next/image";
 import { useCart } from "@/hooks/use-cart";
 import { Product } from "@/types";
 import toast from "react-hot-toast";
 
+import { Input } from "@/components/ui/input";
+import iconPlus from "../public/icon-plus.svg";
+import iconMinus from "../public/icon-minus.svg";
+import { Button } from "./ui/button";
+import Image from "next/image";
+import CartIcon from "../public/white-icon-cart.svg";
+
 interface Props {
   data: Product;
 }
+
+const formSchema = z.object({
+  quantity: z.coerce.number().min(1),
+});
 
 const AddToCartForm = ({ data }: Props) => {
   const cart = useCart();
@@ -40,11 +40,7 @@ const AddToCartForm = ({ data }: Props) => {
   });
 
   function onSubmit(values: z.infer<typeof formSchema>) {
-    const dataWithFinalPrice = { ...data, price: values.quantity * data.price };
-    const itemOne = cart.items.filter((item) => item.id === data.id);
-    console.log(itemOne);
-
-    cart.additem(dataWithFinalPrice);
+    cart.addItem(data, values.quantity);
     toast.success("Item added to cart!");
   }
 
@@ -54,7 +50,7 @@ const AddToCartForm = ({ data }: Props) => {
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit)}
-          className="relative space-y-20"
+          className="relative items-center justify-center gap-x-3 space-y-5 md:flex md:space-y-0"
         >
           <FormField
             control={form.control}
@@ -66,14 +62,14 @@ const AddToCartForm = ({ data }: Props) => {
                   <div className="relative">
                     <Input
                       readOnly
-                      className="absolute border-none bg-light_grayish_blue p-7 text-center text-lg font-bold"
+                      className="border-none bg-light_grayish_blue p-7 text-center text-lg font-bold"
                       placeholder="quantity"
                       {...field}
                     />
                     <Button
                       type="button"
                       variant="ghost"
-                      className="absolute right-3 top-3"
+                      className="absolute right-2.5 top-2.5 hover:opacity-50"
                       onClick={() => field.onChange(field.value + 1)}
                     >
                       <Image src={iconPlus} alt="plus" />
@@ -82,7 +78,7 @@ const AddToCartForm = ({ data }: Props) => {
                       disabled={field.value < 1}
                       type="button"
                       variant="ghost"
-                      className=" absolute left-3 top-3"
+                      className="absolute left-2.5 top-2.5 hover:opacity-50"
                       onClick={() => {
                         if (field.value > 0) {
                           field.onChange(field.value - 1);
@@ -98,10 +94,11 @@ const AddToCartForm = ({ data }: Props) => {
           />
           <Button
             disabled={!isValid || isSubmitting}
-            className="w-full bg-Orange shadow-lg shadow-Orange/30	"
+            className="h-14 w-full gap-x-2 bg-Orange shadow-lg shadow-Orange/30 hover:bg-Orange hover:opacity-50	"
             type="submit"
           >
-            Submit
+            <Image src={CartIcon} alt="cart" />
+            <p>Add to cart</p>
           </Button>
         </form>
       </Form>
