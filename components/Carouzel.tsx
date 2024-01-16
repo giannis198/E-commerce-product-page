@@ -24,7 +24,9 @@ const Carouzel = ({ data }: CarouzelProps) => {
           >
             {url ? (
               <AspectRatio ratio={11 / 9}>
-                <Image src={url} alt={`Product ${index}`} />
+                <picture>
+                  <Image src={url} alt={`Product ${index}`} />
+                </picture>
               </AspectRatio>
             ) : (
               <p>No image available</p>

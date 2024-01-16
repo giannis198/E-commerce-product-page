@@ -21,16 +21,15 @@ const Product = ({ data }: ProductProps) => {
 
   return (
     <section>
-      <div className="items-center justify-between md:flex md:gap-x-16 md:px-16 md:py-20">
+      <div className="items-center justify-between md:flex md:px-16 md:py-20 lg:gap-x-16">
         <div className="md:hidden">
           <Carouzel data={images.highResImg} />
         </div>
-        <div className="hidden md:block">
-          {/* <Gallery data={data} /> */}
+        <div className="hidden w-[50%] md:inline-block">
           <Gallery data={data} />
         </div>
 
-        <div className="md:w-[40%]">
+        <div className="md:w-[50%]">
           <Info data={dataWithDiscount} />
         </div>
       </div>

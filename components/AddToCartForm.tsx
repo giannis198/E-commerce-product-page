@@ -46,11 +46,11 @@ const AddToCartForm = ({ data }: Props) => {
 
   const { isSubmitting, isValid } = form.formState;
   return (
-    <div>
+    <>
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit)}
-          className="relative items-center justify-center gap-x-3 space-y-5 md:flex md:space-y-0"
+          className="relative items-center justify-center gap-x-3 space-y-5 md:space-y-0 lg:flex"
         >
           <FormField
             control={form.control}
@@ -59,17 +59,17 @@ const AddToCartForm = ({ data }: Props) => {
               <FormItem>
                 <FormMessage />
                 <FormControl>
-                  <div className="relative">
+                  <div className="relative h-14 w-full md:block">
                     <Input
                       readOnly
-                      className="border-none bg-light_grayish_blue p-7 text-center text-lg font-bold"
+                      className="h-full border-none bg-light_grayish_blue py-5 text-center text-lg font-bold"
                       placeholder="quantity"
                       {...field}
                     />
                     <Button
                       type="button"
                       variant="ghost"
-                      className="absolute right-2.5 top-2.5 hover:opacity-50"
+                      className="absolute right-5 top-2 p-0 hover:opacity-50"
                       onClick={() => field.onChange(field.value + 1)}
                     >
                       <Image src={iconPlus} alt="plus" />
@@ -78,7 +78,7 @@ const AddToCartForm = ({ data }: Props) => {
                       disabled={field.value < 1}
                       type="button"
                       variant="ghost"
-                      className="absolute left-2.5 top-2.5 hover:opacity-50"
+                      className="absolute left-5 top-2 p-0 hover:opacity-50"
                       onClick={() => {
                         if (field.value > 0) {
                           field.onChange(field.value - 1);
@@ -102,7 +102,7 @@ const AddToCartForm = ({ data }: Props) => {
           </Button>
         </form>
       </Form>
-    </div>
+    </>
   );
 };
 

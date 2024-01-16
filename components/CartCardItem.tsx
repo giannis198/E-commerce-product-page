@@ -26,27 +26,27 @@ const CartCardItem = ({ data }: CartCardItemProps) => {
   };
 
   return (
-    <div>
-      <div className="grid grid-cols-[.50fr_2fr_auto] items-center gap-x-2 pb-2">
+    <section>
+      <div className="grid grid-cols-[.65fr_2fr_auto] items-center gap-x-2">
         <Image
           className="rounded-lg object-cover object-center"
           src={data.product.images?.thumbnails[0]}
           alt={data.product.title}
         />
-        <div className="space-y-1 text-start ">
+        <div className="w-full space-y-1 text-start">
           <Link className="capitalize" href="/">
             {data.product.title}
           </Link>
           <p className="leading-tight">
-            ${data.product.price} x {data.quantity}
-            <span className="pl-1 font-bold">${finalPrice}</span>
+            ${data.product.price} x {data.quantity}&nbsp;
+            <span className="font-bold">${finalPrice}</span>
           </p>
         </div>
-        <Button onClick={onRemove} variant="ghost" className="p-0">
+        <Button onClick={onRemove} className="px-3 py-1" variant="destructive">
           <Image src={trashCan} alt="trash can" />
         </Button>
       </div>
-    </div>
+    </section>
   );
 };
 
